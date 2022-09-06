@@ -1,0 +1,14 @@
+hola::hi::salut::hallo
+bebé::baby::bébé::baby
+respuesta::answer::réponse::antwort
+manzana::apple::ponme::apfel
+vaca::cow::vache::kuh
+escritorio::desk::bureau::schreibtisch
+animal::animal::animal::tier
+día::day::jour::tag
+pájaro::bird::oiseau::vogel
+carro::car::auto::wagen
+banco::bank::banque::bank
+tierra::earth::terre::erde
+puerta::door::portail::tor
+perro::dog::chien::hund
