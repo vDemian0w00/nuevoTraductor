@@ -10,6 +10,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -40,6 +41,9 @@ public class traductor extends javax.swing.JFrame {
         aleman = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         pantalla = new javax.swing.JTextArea();
+        fraR = new javax.swing.JButton();
+        ingR = new javax.swing.JButton();
+        aleR = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -66,9 +70,31 @@ public class traductor extends javax.swing.JFrame {
             }
         });
 
+        pantalla.setEditable(false);
         pantalla.setColumns(20);
         pantalla.setRows(5);
         jScrollPane1.setViewportView(pantalla);
+
+        fraR.setText("<->");
+        fraR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fraRActionPerformed(evt);
+            }
+        });
+
+        ingR.setText("<->");
+        ingR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ingRActionPerformed(evt);
+            }
+        });
+
+        aleR.setText("<->");
+        aleR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aleRActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -83,13 +109,19 @@ public class traductor extends javax.swing.JFrame {
                         .addComponent(input, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(33, 33, 33)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(aleman)
-                            .addComponent(frances)
-                            .addComponent(ingles))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(frances, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(ingles, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(aleman, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(fraR, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(aleR, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(ingR, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -104,11 +136,17 @@ public class traductor extends javax.swing.JFrame {
                         .addGap(63, 63, 63)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(ingles)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(ingles)
+                                    .addComponent(ingR))
                                 .addGap(59, 59, 59)
-                                .addComponent(frances)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(frances)
+                                    .addComponent(fraR))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(aleman))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(aleman)
+                                    .addComponent(aleR)))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(85, Short.MAX_VALUE))
         );
@@ -119,11 +157,17 @@ public class traductor extends javax.swing.JFrame {
     private void alemanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alemanActionPerformed
         
         String pEsp = input.getText().toLowerCase();
-        
+        boolean entro = false;
         for (int i = 0; i < palEspañol.size(); i++) {
             if(palEspañol.get(i).equals(pEsp)){
-                pantalla.setText("La palabra "+pEsp+" se dice en alemán: "+palIdiomas.get(i)[2]);
+                pantalla.setText("La palabra "+pEsp+" se dice en alemán: "+palAleman.get(i));
+                entro=true;
+                break;
             }
+        }
+        if(!entro){
+            JOptionPane.showMessageDialog(rootPane, "No hubo coincidencias");
+            pantalla.setText("");
         }
         
     }//GEN-LAST:event_alemanActionPerformed
@@ -132,11 +176,17 @@ public class traductor extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         String pEsp = input.getText().toLowerCase();
+        boolean entro = false;
         
         for (int i = 0; i < palEspañol.size(); i++) {
             if(palEspañol.get(i).equals(pEsp)){
-                pantalla.setText("La palabra "+pEsp+" se dice en ingles: "+palIdiomas.get(i)[0]);
+                pantalla.setText("La palabra "+pEsp+" se dice en ingles: "+palIngles.get(i));
+                entro=true;
+                break;
             }
+        }if(!entro){
+            JOptionPane.showMessageDialog(rootPane, "No hubo coincidencias");
+            pantalla.setText("");
         }
         
     }//GEN-LAST:event_inglesActionPerformed
@@ -145,16 +195,88 @@ public class traductor extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         String pEsp = input.getText().toLowerCase();
+        boolean entro = false;
         
         for (int i = 0; i < palEspañol.size(); i++) {
             if(palEspañol.get(i).equals(pEsp)){
-                pantalla.setText("La palabra "+pEsp+" se dice en frances: "+palIdiomas.get(i)[1]);
+                pantalla.setText("La palabra "+pEsp+" se dice en frances: "+palFrances.get(i));
+                entro=true;
+                break;
             }
+        }
+        if(!entro){
+            JOptionPane.showMessageDialog(rootPane, "No hubo coincidencias");
+            pantalla.setText("");
         }
         
     }//GEN-LAST:event_francesActionPerformed
 
+    private void ingRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingRActionPerformed
+        // TODO add your handling code here:
+        
+        String p = input.getText().toLowerCase();
+        boolean entro = false;
+        
+        for (int i = 0; i < palIngles.size(); i++) {
+            if(palIngles.get(i).equals(p)){
+                pantalla.setText("La palabra "+p+" se dice en español: "+palEspañol.get(i));
+                entro=true;
+                break;
+            }
+        }
+        if(!entro){
+            JOptionPane.showMessageDialog(rootPane, "No hubo coincidencias");
+            pantalla.setText("");
+        }
+        
+    }//GEN-LAST:event_ingRActionPerformed
+
+    private void fraRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fraRActionPerformed
+        // TODO add your handling code here:
+        
+        String p = input.getText().toLowerCase();
+        boolean entro = false;
+        
+        for (int i = 0; i < palFrances.size(); i++) {
+            if(palFrances.get(i).equals(p)){
+                pantalla.setText("La palabra "+p+" se dice en Frances: "+palEspañol.get(i));
+                entro=true;
+                break;
+            }
+        }
+        if(!entro){
+            JOptionPane.showMessageDialog(rootPane, "No hubo coincidencias");
+            pantalla.setText("");
+        }
+        
+    }//GEN-LAST:event_fraRActionPerformed
+
+    private void aleRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aleRActionPerformed
+        // TODO add your handling code here:
+        
+        String p = input.getText().toLowerCase();
+        boolean entro = false;
+        
+        for (int i = 0; i < palAleman.size(); i++) {
+            if(palAleman.get(i).equals(p)){
+                pantalla.setText("La palabra "+p+" se dice en Aleman: "+palEspañol.get(i));
+                entro=true;
+                break;
+            }
+        }
+        if(!entro){
+            JOptionPane.showMessageDialog(rootPane, "No hubo coincidencias");
+            pantalla.setText("");
+        }
+        
+    }//GEN-LAST:event_aleRActionPerformed
+
     static ArrayList<String> palEspañol = new ArrayList();
+    static ArrayList<String> palIngles = new ArrayList();
+    static ArrayList<String> palFrances = new ArrayList();
+    static ArrayList<String> palAleman = new ArrayList();
+    
+    
     static ArrayList<String[]> palIdiomas = new ArrayList();
     
     
@@ -167,8 +289,9 @@ public class traductor extends javax.swing.JFrame {
             while((linea=lector.readLine())!=null){
                 tempPal=linea.split("::");
                 palEspañol.add(tempPal[0]);
-                String tempArray[] = {tempPal[1], tempPal[2], tempPal[3]};
-                palIdiomas.add(tempArray);
+                palIngles.add(tempPal[1]);
+                palFrances.add(tempPal[2]);
+                palAleman.add(tempPal[3]);
             }
         }catch(Exception e){
             
@@ -216,8 +339,11 @@ public class traductor extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton aleR;
     private javax.swing.JButton aleman;
+    private javax.swing.JButton fraR;
     private javax.swing.JButton frances;
+    private javax.swing.JButton ingR;
     private javax.swing.JButton ingles;
     private javax.swing.JTextField input;
     private javax.swing.JLabel jLabel1;
