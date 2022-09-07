@@ -239,7 +239,7 @@ public class traductor extends javax.swing.JFrame {
         
         for (int i = 0; i < palFrances.size(); i++) {
             if(palFrances.get(i).equals(p)){
-                pantalla.setText("La palabra "+p+" se dice en Frances: "+palEspañol.get(i));
+                pantalla.setText("La palabra "+p+" se dice en Español: "+palEspañol.get(i));
                 entro=true;
                 break;
             }
@@ -259,7 +259,7 @@ public class traductor extends javax.swing.JFrame {
         
         for (int i = 0; i < palAleman.size(); i++) {
             if(palAleman.get(i).equals(p)){
-                pantalla.setText("La palabra "+p+" se dice en Aleman: "+palEspañol.get(i));
+                pantalla.setText("La palabra "+p+" se dice en Español: "+palEspañol.get(i));
                 entro=true;
                 break;
             }
